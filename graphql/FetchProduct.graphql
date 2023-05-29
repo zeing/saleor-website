@@ -1,0 +1,10 @@
+query FetchProduct($id: ID!, $channel: String!) {
+  product(id: $id, channel: $channel) {
+    id
+    name
+    media {
+      url
+      alt
+    }
+  }
+}
