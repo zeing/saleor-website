@@ -1,0 +1,16 @@
+mutation CheckoutShippingAddressUpdate(
+  $id: ID!
+  $address: AddressInput!
+  $locale: LanguageCodeEnum!
+) {
+  checkoutShippingAddressUpdate(shippingAddress: $address, id: $id) {
+    checkout {
+      ...CheckoutDetailsFragment
+    }
+    errors {
+      field
+      message
+      code
+    }
+  }
+}

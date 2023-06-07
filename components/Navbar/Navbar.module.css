@@ -1,0 +1,81 @@
+.navbar {
+  @apply sticky top-0 z-50 bg-white;
+}
+
+.inner {
+  @apply container mx-auto flex h-[72px] flex-nowrap items-center;
+}
+
+.logo {
+  @apply hover:text-lg;
+}
+
+.nav {
+  @apply hidden h-full pl-0.5 lg:flex;
+}
+
+.nav > ol {
+  @apply flex h-full list-none items-center;
+}
+
+.nav > ol > li {
+  @apply h-full;
+}
+
+.dropdown {
+  @apply flex h-full items-center;
+}
+
+.dropdown-trigger {
+  @apply flex h-full items-center px-4 text-center text-base font-bold hover:text-lg;
+}
+
+.dropdown-menu {
+  @apply invisible absolute left-[50%] top-[72px] w-full translate-x-[-50%] border-2 border-b bg-white pt-8;
+  padding-bottom: calc(theme('spacing.12') - theme('borderWidth.DEFAULT'));
+}
+
+.dropdown:hover :local .dropdown-menu {
+  @apply visible;
+}
+
+.dropdown-main {
+  @apply inline-block cursor-pointer text-[1.8rem] font-bold leading-[2.16rem] hover:underline;
+}
+
+.dropdown-ul {
+  @apply mt-3 list-none;
+}
+
+.dropdown-ul > li + li {
+  @apply mt-2;
+}
+
+.dropdown-link {
+  @apply cursor-pointer text-base hover:underline;
+}
+
+.nav-icon-button {
+  @apply relative flex h-8 w-8 items-center justify-center hover:text-base;
+}
+
+.nav-icon-counter {
+  @apply absolute bottom-2 right-2 flex h-[14px] translate-x-[50%] translate-y-[50%] items-center justify-center rounded bg-black p-2 px-1 text-[1rem] leading-[1rem] text-white;
+  min-width: theme('spacing.4');
+}
+
+.user-menu-container {
+  @apply relative;
+}
+
+.user-menu-container:hover :local .user-menu {
+  @apply visible;
+}
+
+.user-menu {
+  @apply invisible absolute right-0 top-[100%] flex flex-col shadow bg-white;
+}
+
+.user-menu-item {
+  @apply flex cursor-pointer items-center whitespace-nowrap px-4 pb-[13px] pt-[14px] text-base font-medium hover:text-base;
+}

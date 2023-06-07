@@ -1,0 +1,26 @@
+query CurrentUser {
+  user: me {
+    id
+    lastLogin
+    dateJoined
+    email
+    firstName
+    lastName
+    avatar {
+      url
+      alt
+    }
+    orders {
+      totalCount
+    }
+    addresses {
+      ...AddressDetailsFragment
+    }
+    defaultBillingAddress {
+      ...AddressDetailsFragment
+    }
+    defaultShippingAddress {
+      ...AddressDetailsFragment
+    }
+  }
+}
