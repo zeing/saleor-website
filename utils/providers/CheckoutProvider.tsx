@@ -29,7 +29,6 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
     variables: { id: checkoutId, ...routerToRegionQuery(router) },
     pause: typeof window === 'undefined',
   })
-  console.log('checkoutId', checkoutId, 'isloading', loading)
   const resetCheckoutId = () => setCheckoutId('')
 
   const providerValues: CheckoutConsumerProps = {

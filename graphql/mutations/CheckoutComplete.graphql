@@ -1,0 +1,25 @@
+mutation checkoutComplete($checkoutId: ID!, $paymentData: JSONString) {
+  checkoutComplete(id: $checkoutId, paymentData: $paymentData) {
+    order {
+      id
+      status
+      token
+      billingAddress {
+        id
+        ...AddressDetailsFragment
+      }
+      shippingAddress {
+        id
+        ...AddressDetailsFragment
+      }
+    }
+    confirmationNeeded
+    confirmationData
+    errors {
+      field
+      message
+      variants
+      addressType
+    }
+  }
+}

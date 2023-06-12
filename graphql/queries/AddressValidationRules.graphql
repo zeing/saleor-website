@@ -1,0 +1,5 @@
+query AddressValidationRules($countryCode: CountryCode!) {
+  addressValidationRules(countryCode: $countryCode) {
+    ...ValidationRulesFragment
+  }
+}
