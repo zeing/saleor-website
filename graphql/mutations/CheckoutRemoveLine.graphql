@@ -1,0 +1,15 @@
+mutation RemoveProductFromCheckout(
+  $id: ID!
+  $lineId: ID!
+  $locale: LanguageCodeEnum!
+) {
+  checkoutLineDelete(id: $id, lineId: $lineId) {
+    checkout {
+      ...CheckoutDetailsFragment
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

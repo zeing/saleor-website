@@ -1,15 +1,11 @@
-import { GetStaticProps } from "next";
-import { initUrqlClient, withUrqlClient } from "next-urql";
-import { cacheExchange, fetchExchange, ssrExchange } from "urql";
-import { API_URL, DEFAULT_CHANNEl } from "../constants";
-import {
-  FetchProductsDocument,
-  FetchProductsQuery,
-  FetchProductsQueryVariables,
-} from "../generated/graphql";
-import { Products } from "../src/Products";
+import { GetStaticProps } from 'next'
+import { initUrqlClient, withUrqlClient } from 'next-urql'
+import { cacheExchange, fetchExchange, ssrExchange } from 'urql'
+import { API_URL, DEFAULT_CHANNEL } from '@/constants'
+import { FetchProductsDocument, FetchProductsQuery, FetchProductsQueryVariables } from '@/generated/graphql'
+import { Products } from '@/components/Products'
 
-const ssrCache = ssrExchange({ isClient: false });
+const ssrCache = ssrExchange({ isClient: false })
 
 export const getStaticProps: GetStaticProps = async () => {
   // The following content of "getStaticProps" is needed to populate the cache,
@@ -21,28 +17,28 @@ export const getStaticProps: GetStaticProps = async () => {
       exchanges: [cacheExchange, ssrCache, fetchExchange],
     },
     false
-  );
+  )
 
   await client
     ?.query<FetchProductsQuery>(FetchProductsDocument, {
-      channel: DEFAULT_CHANNEl,
+      channel: DEFAULT_CHANNEL,
       first: 9,
     } as FetchProductsQueryVariables)
-    .toPromise();
+    .toPromise()
 
   return {
     props: {
       urqlState: ssrCache.extractData(),
     },
     revalidate: 600,
-  };
-};
+  }
+}
 
 const HomePage = () => {
-  return <Products />;
-};
+  return <Products />
+}
 
 export default withUrqlClient((ssr) => ({
   url: API_URL,
   exchanges: [fetchExchange],
-}))(HomePage);
+}))(HomePage)

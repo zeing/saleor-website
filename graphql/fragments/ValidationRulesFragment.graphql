@@ -1,0 +1,12 @@
+fragment ValidationRulesFragment on AddressValidationData {
+  addressFormat
+  allowedFields
+  requiredFields
+  countryAreaType
+  postalCodeType
+  cityType
+  countryAreaChoices {
+    raw
+    verbose
+  }
+}

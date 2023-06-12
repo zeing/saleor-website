@@ -1,0 +1,32 @@
+schema: graphql/schema.graphql
+documents: [graphql/**/*.graphql, /*.ts, /*.tsx]
+extensions:
+  codegen:
+    overwrite: true
+    generates:
+      generated/graphql.ts:
+        config:
+          scalars:
+            JSONString: string
+            UUID: string
+            Metadata: Record<string, string>
+            DateTime: string
+          dedupeFragments: true
+          dedupeOperationSuffix: true # Prevent suffix duplication in generated names
+          enumsAsTypes: true
+        plugins:
+          - add:
+              content: |-
+                // THIS FILE IS GENERATED WITH `pnpm generate`
+                import "graphql/language/ast";
+                import * as Scalar from '../scalars';
+          - typescript
+          - typescript-operations
+          - urql-introspection
+          - typescript-urql:
+              documentVariablePrefix: 'Untyped'
+              fragmentVariablePrefix: 'Untyped'
+          - typed-document-node
+      generated/schema.graphql:
+        plugins:
+          - schema-ast
